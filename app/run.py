@@ -1,9 +1,11 @@
 import os
+from re import A
 import dotenv
 from flask import Flask
-from app.main.dao.main_dao import MainDAO
-from app.main.views import main_blueprint
-
+from app.modules.app_dao import AppDAO
+from app.modules.main.views import main_blueprint
+from app.modules.post.views import post_blueprint
+import app.modules.app_dao as app_dao
 
 app = Flask(__name__)
 
@@ -14,12 +16,19 @@ else:
     app.config.from_pyfile('config/production.py')
     
 app.register_blueprint(main_blueprint)
+app.register_blueprint(post_blueprint)
 
 
-from app.main.dao.main_dao import MainDAO
+
+
+def debug_func():
+    ...
+    # appDao = AppDAO()
+    # posts = appDao.load_posts()
+    # print(posts[0])
 
 if __name__ == "__main__":
-    # a = MainDAO()
-    # b = a.load_posts()
-    # print(b[0])
+    debug_func()
     app.run()
+
+

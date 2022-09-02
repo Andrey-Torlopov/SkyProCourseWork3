@@ -1,12 +1,12 @@
 from flask import Blueprint, request, render_template
 
-from app.main.dao.main_dao import MainDAO
+from app.modules.app_dao import AppDAO
 
 main_blueprint = Blueprint('main_blueprint', __name__, template_folder='templates')
 
-main_dao = MainDAO()
+appDao = AppDAO()
 
 @main_blueprint.route('/')
 def page_index():
-    posts = list(map(lambda x: x.get_dict, main_dao.load_posts()))
+    posts = list(map(lambda x: x.get_dict_short_text, appDao.load_posts()))
     return render_template("index.html", posts=posts)
