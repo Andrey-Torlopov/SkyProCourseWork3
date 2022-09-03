@@ -4,17 +4,17 @@ from app.tools.helpers import load_array_of_dictionary
 
 class AppDAO(object):
     '''Main DAO object'''
-    def __init__(self) -> None:
+    def __init__(self, posts_path, bookmarks_path, comments_path) -> None:
         self.cached_posts = []
+        self.posts_path = posts_path
+        self.bookmarks_path = bookmarks_path
+        self.comments_path = comments_path
         
     def load_posts(self):
-        posts_array = load_array_of_dictionary('./static/data/posts.json')
-        bookmarks_array = load_array_of_dictionary('./static/data/bookmarks.json')
-        
+        posts_array = load_array_of_dictionary(self.posts_path)
+        bookmarks_array = load_array_of_dictionary(self.bookmarks_path)
         result = list(map(lambda x: self._make_post_from_dict(x, bookmarks_array) ,posts_array))
-                
-        comments_array = load_array_of_dictionary('./static/data/comments.json')
-        
+        comments_array = load_array_of_dictionary(self.comments_path)
         comments_dictionary = self.prepeare_comments(comments_array)
         
         for item in result:

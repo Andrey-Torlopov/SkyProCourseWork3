@@ -5,7 +5,7 @@ from app.models.comment import Comment
 
 post_blueprint = Blueprint('post_blueprint', __name__, template_folder='templates', url_prefix='/post')
 
-appDAO = AppDAO()
+appDao = AppDAO('./static/data/posts.json','./static/data/bookmarks.json','./static/data/comments.json')
 
 @post_blueprint.route('/<int:id>')
 def page_index(id):
