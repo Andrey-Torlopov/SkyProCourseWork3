@@ -19,8 +19,6 @@ app.register_blueprint(main_blueprint)
 app.register_blueprint(post_blueprint)
 
 
-
-
 def debug_func():
     ...
     # appDao = AppDAO()

@@ -17,8 +17,12 @@ class Post(object):
         return list(map(lambda x: x.get_dict, self.comments))
     
     @property
+    def comments_count(self):
+        return len(self.comments)
+    
+    @property
     def comments_count_string(self):
-        if len(self.comments) == 0:
+        if self.comments_count == 0:
             return 'Нет комментариев'
         
         return f'Количество комментариев: {len(self.comments)}'
@@ -31,9 +35,10 @@ class Post(object):
                 "pic": self.pic,
                 "content": self.content,
                 "views": self.views_count,
-                "comments_count": self.comments_count_string,
+                "comments_count_string": self.comments_count_string,
                 "is_bookmark": self.is_bookmark,
-                "comments": self.comments_dict}
+                "comments": self.comments_dict,
+                "comments_count": self.comments_count}
         
     @property
     def get_dict_short_text(self):
@@ -43,6 +48,7 @@ class Post(object):
                 "pic": self.pic,
                 "content": self.content[:50],
                 "views": self.views_count,
-                "comments_count": self.comments_count_string,
+                "comments_count_string": self.comments_count_string,
                 "is_bookmark": self.is_bookmark,
-                "comments": self.comments_dict}
+                "comments": self.comments_dict,
+                "comments_count": self.comments_count}

@@ -4,7 +4,9 @@ from app.tools.helpers import load_array_of_dictionary
 
 class AppDAO(object):
     '''Main DAO object'''
-    
+    def __init__(self) -> None:
+        self.cached_posts = []
+        
     def load_posts(self):
         posts_array = load_array_of_dictionary('./static/data/posts.json')
         bookmarks_array = load_array_of_dictionary('./static/data/bookmarks.json')
@@ -21,8 +23,20 @@ class AppDAO(object):
             except Exception:
                 item.comments = list()
                
+        self.cached_posts = result
         return result
     
+    def get_post_by(self, id: int) -> Post:
+        print(id)
+        if len(self.cached_posts) == 0:
+            self.load_posts()
+        
+        for item in self.cached_posts:
+            if item.pk == id:
+                return item
+            
+        return None
+        
     # Helpers
     
     def _make_post_from_dict(self, dict, bookmarks):
