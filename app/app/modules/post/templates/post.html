@@ -5,10 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ post.name }}: {{ post.content[:10] }}...</title>
-  <link href="./../static/css/styles.min.css" rel="stylesheet">
+  <link href="/static/css/styles.min.css" rel="stylesheet">
 </head>
 
 <body>
+  <p>TEST</p>
+  <p> {{ post.poster_name }}</p>
+  <p>/TEST</p>
+  <br><br><br>
   <header class="container header">
     <div class="header__wrapper">
       <a href="/" class="header__btn-back">
@@ -35,7 +39,7 @@
             <span class="item__username">{{ post.name }}</span>
           </a>
           <button type="button" class="item__bookmark-btn">
-            <img src="./../static/img/bookmark.png" alt="No Image" class="item__bookmark-icon" width="24">
+            <img src="/static/img/bookmark.png" alt="No Image" class="item__bookmark-icon" width="24">
           </button>
         </div>
         <a href="" class="item__post-link">

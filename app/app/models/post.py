@@ -27,28 +27,7 @@ class Post(object):
         
         return f'Количество комментариев: {len(self.comments)}'
         
-    @property
-    def get_dict(self):
-        return {"pk": self.pk,
-                "name": self.poster_name,
-                "avatar": self.poster_avatar, 
-                "pic": self.pic,
-                "content": self.content,
-                "views": self.views_count,
-                "comments_count_string": self.comments_count_string,
-                "is_bookmark": self.is_bookmark,
-                "comments": self.comments_dict,
-                "comments_count": self.comments_count}
         
     @property
-    def get_dict_short_text(self):
-        return {"pk": self.pk,
-                "name": self.poster_name,
-                "avatar": self.poster_avatar, 
-                "pic": self.pic,
-                "content": self.content[:50],
-                "views": self.views_count,
-                "comments_count_string": self.comments_count_string,
-                "is_bookmark": self.is_bookmark,
-                "comments": self.comments_dict,
-                "comments_count": self.comments_count}
+    def short_content(self):
+        return self.content[:50]

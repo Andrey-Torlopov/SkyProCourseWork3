@@ -9,5 +9,5 @@ appDao = AppDAO()
 @main_blueprint.route('/')
 def page_index():
     print("Catch!")
-    posts = list(map(lambda x: x.get_dict_short_text, appDao.load_posts()))
+    posts = appDao.load_posts()
     return render_template("index.html", posts=posts)
