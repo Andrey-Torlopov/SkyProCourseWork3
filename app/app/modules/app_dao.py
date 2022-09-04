@@ -5,11 +5,11 @@ from app.tools.helpers import load_array_of_dictionary
 class AppDAO(object):
     '''Main DAO object'''
     def __init__(self, posts_path, bookmarks_path, comments_path) -> None:
-        self.cached_posts = []
         self.posts_path = posts_path
         self.bookmarks_path = bookmarks_path
         self.comments_path = comments_path
-        
+    
+    
     def load_posts(self):
         posts_array = load_array_of_dictionary(self.posts_path)
         bookmarks_array = load_array_of_dictionary(self.bookmarks_path)
@@ -23,20 +23,28 @@ class AppDAO(object):
             except Exception:
                 item.comments = list()
                
-        self.cached_posts = result
         return result
     
     def get_post_by(self, id: int) -> Post:
-        print(id)
-        if len(self.cached_posts) == 0:
-            self.load_posts()
+        posts = self.load_posts()
         
-        for item in self.cached_posts:
+        for item in posts:
             if item.pk == id:
                 return item
             
         return None
         
+    def search_by_text(self, text):
+        posts = self.load_posts()
+        def filter_text(text):
+            def wrapper(post):
+                return text.lower() in post.content.lower()
+            return wrapper
+
+        post_filter = filter_text(text)
+        result = list(filter(post_filter, posts))
+        return result 
+    
     # Helpers
     
     def _make_post_from_dict(self, dict, bookmarks):
