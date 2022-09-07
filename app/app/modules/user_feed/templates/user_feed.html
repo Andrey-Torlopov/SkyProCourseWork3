@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="static/css/styles.min.css" rel="stylesheet">
+  <link href="./../static/css/styles.min.css" rel="stylesheet">
   <title>Torlopov. Course work #3</title>
 </head>
 
@@ -17,7 +17,7 @@
         </svg>
       </a>
       <a href="/bookmarks.html" class="header__bookmark-btn">
-        <img src="static/img/bookmark.png" alt="" class="header__bookmark-icon" width="28">
+        <img src="./../static/img/bookmark.png" alt="" class="header__bookmark-icon" width="28">
         <span class="header__bookmark-counter">3</span>
       </a>
     </div>
@@ -37,7 +37,7 @@
       
       <div class="items__item item">
         <div class="item__top">
-          <a href="/users/{{ post.poster_name}}" class="item__head">
+          <a href="/user-feed.html" class="item__head">
             <div class="item__ava-wrap">
               <img src="{{ post.poster_avatar }}" alt="" class="item__ava" width="47">
             </div>
@@ -56,14 +56,14 @@
         </div>
         <div class="item__post-info">
           <div class="item__counter">
-            <img src="static/img/eye.png" alt="" class="item__counter-icon" width="26">
+            <img src="./../static/img/eye.png" alt="" class="item__counter-icon" width="26">
             <span class="item__counter-text">{{ post._count }}</span>
           </div>
         </div>
         <div class="item__post-bottom">
           <a href="/bookmark/{{ post.pk }}" class="item__btn-more">Подробнее</a>
           <button type="button" class="item__bookmark-btn">
-            <img src="static/img/bookmark.png" alt="" class="item__bookmark-icon" width="24">
+            <img src="./../static/img/bookmark.png" alt="" class="item__bookmark-icon" width="24">
           </button>
         </div>
       </div>

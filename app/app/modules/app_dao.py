@@ -25,7 +25,7 @@ class AppDAO(object):
                
         return result
     
-    def get_post_by(self, id: int) -> Post:
+    def get_post_by_id(self, id: int) -> Post:
         posts = self.load_posts()
         
         for item in posts:
@@ -44,6 +44,18 @@ class AppDAO(object):
         post_filter = filter_text(text)
         result = list(filter(post_filter, posts))
         return result 
+    
+    def get_post_by_name(self, username):
+        posts = self.load_posts()
+        def filter_text(text):
+            def wrapper(post):
+                return text.lower() in post.poster_name.lower()
+            return wrapper
+
+        post_filter = filter_text(username)
+        result = list(filter(post_filter, posts))
+        return result 
+        
     
     # Helpers
     

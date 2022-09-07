@@ -21,9 +21,3 @@ def search_by_name():
     
     posts = appDao.search_by_text(search_text)
     return render_template("index.html", posts=posts)
-
-
-# @main_blueprint.route('/sarch')
-# def page_index():
-#     posts = appDao.load_posts()
-#     return render_template("index.html", posts=posts)

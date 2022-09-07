@@ -9,7 +9,7 @@ appDao = AppDAO('./static/data/posts.json','./static/data/bookmarks.json','./sta
 
 @post_blueprint.route('/<int:id>')
 def page_index(id):
-    post = appDao.get_post_by(id)
+    post = appDao.get_post_by_id(id)
     if post is None:
         return ""
     return render_template("post.html", post=post)
